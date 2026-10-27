@@ -5,10 +5,13 @@
 
 namespace my {
 class Keeper {
+public:
   Keeper();
+  Keeper(size_t cap);
   ~Keeper();
 
   void push(Base *elem);
+  void print();
 
 private:
   Base **_data;
