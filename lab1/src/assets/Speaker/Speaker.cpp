@@ -1,52 +1,53 @@
 #include "Speaker.h"
-#include "../myStr/myStr.h"
 
-my::Speacer::Speacer()
-    : my::Base(), _organization_name(new my::string()),
-      _report_name(new my::string()), _report_annotation(new my::string()) {}
+#include <iostream>
 
-my::Speacer::Speacer(const char *name, const char *organization,
+my::Speaker::Speaker()
+    : my::Base(), _organization_name(std::string()),
+      _report_name(std::string()), _report_annotation(std::string()) {}
+
+my::Speaker::Speaker(const char *name, const char *organization,
                      const char *report, const char *annotation)
-    : my::Base(name), _organization_name(new my::string(organization)),
-      _report_name(new my::string(report)),
-      _report_annotation(new my::string(annotation)) {}
+    : my::Base(name), _organization_name(std::string(organization)),
+      _report_name(std::string(report)),
+      _report_annotation(std::string(annotation)) {}
 
-my::Speacer::Speacer(const Speacer &other)
+my::Speaker::Speaker(const Speaker &other)
     : my::Base(other.getNmae()),
-      _organization_name(new my::string(*other._organization_name)),
-      _report_name(new my::string(*other._report_name)),
-      _report_annotation(new my::string(*other._report_annotation)) {}
+      _organization_name(std::string(other._organization_name)),
+      _report_name(std::string(other._report_name)),
+      _report_annotation(std::string(other._report_annotation)) {}
 
-my::Speacer::~Speacer() {
-  if (_organization_name)
-    delete _organization_name;
-  if (_report_name)
-    delete _report_name;
-  if (_report_annotation)
-    delete _report_annotation;
+my::Speaker::~Speaker() {}
+
+const char *my::Speaker::getOrganizationName() const {
+  return _report_name.c_str();
+}
+const char *my::Speaker::getReportName() const { return _report_name.c_str(); }
+
+const char *my::Speaker::getReportAnnotetion() const {
+  return _report_annotation.c_str();
 }
 
-char *my::Speacer::getOrganizationName() const {
-  return _organization_name->get();
-}
-
-char *my::Speacer::getReportName() const { return _report_name->get(); }
-
-char *my::Speacer::getReportAnnotetion() const {
-  return _report_annotation->get();
-}
-
-int my::Speacer::setOrganizationName(const char *newName) {
-  _organization_name->set(newName);
+int my::Speaker::setOrganizationName(const char *newName) {
+  _organization_name = newName;
   return 0;
 }
 
-int my::Speacer::setReportName(const char *newName) {
-  _report_name->set(newName);
+int my::Speaker::setReportName(const char *newName) {
+  _report_name = newName;
   return 0;
 }
 
-int my::Speacer::setReportAnnotetion(const char *newAnnotation) {
-  _report_annotation->set(newAnnotation);
+int my::Speaker::setReportAnnotetion(const char *newAnnotation) {
+  _report_annotation = newAnnotation;
   return 0;
+}
+
+void my::Speaker::print() const {
+  std::cout << "\nSpeacker:"
+            << "\nName: " << this->getNmae()
+            << "\nOrganization: " << _organization_name
+            << "\nReport name: " << _report_name
+            << "\nReport annotation: " << _report_annotation << std::endl;
 }

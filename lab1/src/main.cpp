@@ -1,4 +1,7 @@
-#include "assets/myStr/myStr.h"
-#include <iostream>
+#include "assets/Speaker/Speaker.h"
 
-int main() { return 0; }
+int main() {
+  my::Speaker test;
+  test.print();
+  return 0;
+}

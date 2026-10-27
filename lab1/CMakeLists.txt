@@ -6,5 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(main
   src/main.cpp
-  src/assets/myStr/myStr.cpp
+  src/assets/Base/Base.cpp
+  src/assets/Speaker/Speaker.cpp
 )

@@ -1,28 +1,29 @@
 #pragma once
 
 #include "../Base/Base.h"
-#include "../myStr/myStr.h"
 
 namespace my {
-class Speacer : public my::Base {
+class Speaker : public my::Base {
 public:
-  Speacer();
-  Speacer(const char *name, const char *organization, const char *report,
+  Speaker();
+  Speaker(const char *name, const char *organization, const char *report,
           const char *annotation);
-  Speacer(const Speacer &other);
-  ~Speacer();
+  Speaker(const Speaker &other);
+  ~Speaker();
 
-  char *getOrganizationName() const;
-  char *getReportName() const;
-  char *getReportAnnotetion() const;
+  const char *getOrganizationName() const;
+  const char *getReportName() const;
+  const char *getReportAnnotetion() const;
 
   int setOrganizationName(const char *newName);
   int setReportName(const char *newName);
   int setReportAnnotetion(const char *newAnnotation);
 
+  void print() const override;
+
 private:
-  my::string *_organization_name;
-  my::string *_report_name;
-  my::string *_report_annotation;
+  std::string _organization_name;
+  std::string _report_name;
+  std::string _report_annotation;
 };
 } // namespace my
