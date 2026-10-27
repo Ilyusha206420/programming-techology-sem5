@@ -2,17 +2,17 @@
 #include "../myStr/myStr.h"
 
 my::Speacer::Speacer()
-    : my::Person(), _organization_name(new my::string()),
+    : my::Base(), _organization_name(new my::string()),
       _report_name(new my::string()), _report_annotation(new my::string()) {}
 
 my::Speacer::Speacer(const char *name, const char *organization,
                      const char *report, const char *annotation)
-    : my::Person(name), _organization_name(new my::string(organization)),
+    : my::Base(name), _organization_name(new my::string(organization)),
       _report_name(new my::string(report)),
       _report_annotation(new my::string(annotation)) {}
 
 my::Speacer::Speacer(const Speacer &other)
-    : my::Person(other.getNmae()),
+    : my::Base(other.getNmae()),
       _organization_name(new my::string(*other._organization_name)),
       _report_name(new my::string(*other._report_name)),
       _report_annotation(new my::string(*other._report_annotation)) {}

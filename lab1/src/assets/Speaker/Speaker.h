@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../Person/Person.h"
+#include "../Base/Base.h"
 #include "../myStr/myStr.h"
 
 namespace my {
-class Speacer : public my::Person {
+class Speacer : public my::Base {
 public:
   Speacer();
   Speacer(const char *name, const char *organization, const char *report,

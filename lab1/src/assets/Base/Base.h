@@ -3,14 +3,17 @@
 #include "../myStr/myStr.h"
 
 namespace my {
-class Person {
+class Base {
 public:
-  Person();
-  Person(const char *name);
-  Person(const my::string &name);
+  Base();
+  Base(const char *name);
+  Base(const my::string &name);
+  virtual ~Base();
 
   char *getNmae() const;
   int setName(const char *newName);
+
+  virtual void print() const = 0;
 
 private:
   string *_name;
