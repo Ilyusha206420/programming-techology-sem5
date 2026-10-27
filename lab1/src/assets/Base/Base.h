@@ -7,6 +7,7 @@ class Base {
 public:
   Base();
   Base(const char *name);
+  Base(const std::string &name);
   virtual ~Base();
 
   const char *getNmae() const;

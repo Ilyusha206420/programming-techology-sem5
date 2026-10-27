@@ -2,6 +2,7 @@
 
 my::Base::Base() : _name(std::string()) {}
 my::Base::Base(const char *name) : _name(std::string(name)) {}
+my::Base::Base(const std::string &name) : _name(name) {}
 
 my::Base::~Base() {}
 
