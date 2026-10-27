@@ -8,4 +8,5 @@ add_executable(main
   src/main.cpp
   src/assets/Base/Base.cpp
   src/assets/Speaker/Speaker.cpp
+  src/assets/Keeper/Keeper.cpp
 )
