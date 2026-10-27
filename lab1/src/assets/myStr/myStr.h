@@ -9,16 +9,16 @@ public:
   string();
   string(char *str);
   string(const char *str);
-  string(const string &str);
+  string(const string &other);
   ~string();
 
   char *get() const;
+  int set(const char *newStr);
 
   friend std::ostream &operator<<(std::ostream &os, const string &s);
 
 private:
   char *_str;
   size_t _len;
-  size_t _cap;
 };
 } // namespace my
