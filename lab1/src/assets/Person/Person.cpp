@@ -1,4 +1,4 @@
-#include "People.h"
+#include "Person.h"
 
 my::Person::Person() : _name(new my::string()) {}
 my::Person::Person(const char *name) : _name(new my::string(name)) {}

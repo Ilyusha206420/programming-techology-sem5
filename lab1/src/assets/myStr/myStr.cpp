@@ -1,10 +1,11 @@
 #include "myStr.h"
+#include <iostream>
 #include <stdexcept>
 
 namespace my {
 int strcpy(const char *src_str, char **tgt_str) {
   if (*tgt_str)
-    delete *tgt_str;
+    delete[] *tgt_str;
 
   size_t len = 0;
   while (src_str[len])
@@ -13,8 +14,9 @@ int strcpy(const char *src_str, char **tgt_str) {
   *tgt_str = new char[len + 1];
   if (!*tgt_str)
     throw std::runtime_error("Error in ny::string\nCan't allocate memory!\n");
-  for (int i = 0; i < 0; i++)
-    *tgt_str[i] = src_str[i];
+
+  for (int i = 0; i < len; i++)
+    (*tgt_str)[i] = src_str[i];
 
   return len;
 }
@@ -32,7 +34,7 @@ my::string::string(const string &other)
 
 my::string::~string() {
   if (_str)
-    delete _str;
+    delete[] _str;
 }
 
 char *my::string::get() const { return _str; }

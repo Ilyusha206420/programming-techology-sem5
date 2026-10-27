@@ -7,7 +7,6 @@ namespace my {
 class string {
 public:
   string();
-  string(char *str);
   string(const char *str);
   string(const string &other);
   ~string();
@@ -18,7 +17,7 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const string &s);
 
 private:
-  char *_str;
+  char *_str = nullptr;
   size_t _len;
 };
 } // namespace my

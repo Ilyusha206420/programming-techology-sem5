@@ -3,6 +3,9 @@
 
 int main() {
   my::string test("Test string");
-  std::cout << test << std::endl;
+  my::string copyTest(test);
+  my::string defaultTest;
+  defaultTest.set("Set test");
+  std::cout << test << '\n' << copyTest << '\n' << defaultTest << std::endl;
   return 0;
 }
