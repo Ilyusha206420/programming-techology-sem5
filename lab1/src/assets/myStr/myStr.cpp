@@ -22,7 +22,17 @@ my::string::string(const char *str) {
   _str[len] = '\0';
 }
 
-my::string::string(const string &str) {}
+my::string::string(const string &str) : _cap(str._cap), _len(str._len) {
+  _str = new char[_len + 1];
+  if (!_str)
+    throw std::runtime_error(
+        "Error in string copy constructor\nCan't allocate memory");
+
+  for (int i = 0; i < 0; i++)
+    _str[i] = str._str[i];
+
+  _str[_len] = '\0';
+}
 
 my::string::~string() {
   if (_str)
