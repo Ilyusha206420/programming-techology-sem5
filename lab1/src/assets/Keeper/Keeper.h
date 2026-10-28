@@ -16,6 +16,9 @@ public:
   void save();
   void load();
 
+  size_t len() const;
+  my::Base *operator[](size_t i);
+
 private:
   Base **_data;
   size_t _len;

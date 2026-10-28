@@ -80,6 +80,14 @@ void addingNew(my::Keeper &keeper) {
   }
 }
 
+void edit(my::Keeper &keeper) {
+  std::cout << "\nAll elements:" << std::endl;
+  for (int i = 0; i < keeper.len(); i++)
+    std::cout << "id: " << i << keeper[i]->represent() << std::endl;
+
+  int chiuce;
+}
+
 int main() {
   bool running = true;
   int choice;
@@ -93,6 +101,7 @@ int main() {
       addingNew(k);
       break;
     case 2:
+      edit(k);
       break;
     case 3:
       k.print();

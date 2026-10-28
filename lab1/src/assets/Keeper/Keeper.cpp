@@ -49,6 +49,15 @@ void my::Keeper::save() {
   f.close();
 }
 
+size_t _find_first_space(std::string s) {
+  size_t res;
+  while (s.at(res) != ' ' && s.at(res) != '\0' && s.at(res) != '\n')
+    res++;
+  if (s.at(res) == ' ')
+    return res;
+  return 0;
+}
+
 void my::Keeper::load() {
   std::ifstream f("data");
   if (!f) {
@@ -57,27 +66,39 @@ void my::Keeper::load() {
   }
   std::string line;
   std::string pars[4];
+  size_t pos;
   while (std::getline(f, line)) {
     if (line == "[Speaker]") {
-      for (int i = 0; i < 4; i++)
-        std::getline(f, pars[i]);
+      for (int i = 0; i < 4; i++) {
+        std::getline(f, line);
+        pos = line.find(':');
+        pars[i] = line.substr(pos + 2);
+      }
 
       this->push(new Speaker(pars));
     }
 
     if (line == "[Administration]") {
-      for (int i = 0; i < 3; i++)
-        std::getline(f, pars[i]);
-
+      for (int i = 0; i < 3; i++) {
+        std::getline(f, line);
+        pos = line.find(':');
+        pars[i] = line.substr(pos + 2);
+      }
       this->push(new Administration(pars));
     }
 
     if (line == "[Conference]") {
-      for (int i = 0; i < 3; i++)
-        std::getline(f, pars[i]);
+      for (int i = 0; i < 3; i++) {
+        std::getline(f, line);
+        pos = line.find(':');
+        pars[i] = line.substr(pos + 2);
+      }
 
       this->push(new Conference(pars));
     }
   }
   f.close();
 }
+
+size_t my::Keeper::len() const { return _len; }
+my::Base *my::Keeper::operator[](size_t i) { return _data[i]; }
