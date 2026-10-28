@@ -10,24 +10,23 @@ public:
           const char *annotation);
   Speaker(const std::string &name, const std::string &organization,
           const std::string &report, const std::string &annotation);
+  Speaker(const std::string arg_arr[4]);
   Speaker(const Speaker &other);
   ~Speaker();
 
-  const char *getOrganizationName() const;
-  const char *getReportName() const;
-  const char *getReportAnnotetion() const;
+  std::string getOrganizationName() const;
+  std::string getReportName() const;
+  std::string getReportAnnotetion() const;
 
-  int setOrganizationName(const char *newName);
-  int setReportName(const char *newName);
-  int setReportAnnotetion(const char *newAnnotation);
+  void setOrganizationName(std::string &newName);
+  void setReportName(std::string &newName);
+  void setReportAnnotetion(std::string &newAnnotation);
 
-  void print() const override;
+  std::string represent() const override;
 
 private:
   std::string _organization_name;
   std::string _report_name;
   std::string _report_annotation;
-
-  void printData(const char *pref) const;
 };
 } // namespace my

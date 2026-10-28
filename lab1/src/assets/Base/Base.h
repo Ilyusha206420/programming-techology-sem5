@@ -10,10 +10,10 @@ public:
   Base(const std::string &name);
   virtual ~Base();
 
-  const char *getNmae() const;
-  int setName(const char *newName);
+  std::string getNmae() const;
+  void setName(std::string &newName);
 
-  virtual void print() const = 0;
+  virtual std::string represent() const = 0;
 
 private:
   std::string _name;

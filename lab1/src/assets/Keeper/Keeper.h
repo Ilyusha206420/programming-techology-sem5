@@ -13,6 +13,9 @@ public:
   void push(Base *elem);
   void print();
 
+  void save();
+  void load();
+
 private:
   Base **_data;
   size_t _len;

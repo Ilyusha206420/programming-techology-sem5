@@ -9,4 +9,6 @@ add_executable(main
   src/assets/Base/Base.cpp
   src/assets/Speaker/Speaker.cpp
   src/assets/Keeper/Keeper.cpp
+  src/assets/Administrtion/Administrtion.cpp
+  src/assets/Conference/Conference.cpp
 )

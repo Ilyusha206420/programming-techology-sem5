@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "assets/Administrtion/Administrtion.h"
+#include "assets/Conference/Conference.h"
 #include "assets/Keeper/Keeper.h"
 #include "assets/Speaker/Speaker.h"
 
@@ -7,6 +9,8 @@ void printInstruction() {
   std::cout << "\nHelp:"
             << "\n1 - Add new element"
             << "\n3 - Print all data"
+            << "\n4 - Save data"
+            << "\n5 - Load data"
             << "\n9 - Print Help"
             << "\n0 - Exit" << std::endl;
 }
@@ -17,29 +21,48 @@ void addingNew(my::Keeper &keeper) {
   while (running) {
     std::cout << "\nWhat do you want to add?"
               << "\n1 - Speaker"
+              << "\n2 - Administration"
+              << "\n3 - Conference"
               << "\n0 - Exit" << std::endl
               << "\nYour choice: ";
     std::cin >> choice;
+    std::cin.ignore();
     switch (choice) {
     case 1: {
-      std::cin.ignore();
       std::string input[4];
       int i = 0;
-      for (auto &msg : {"Enter speaker name: ", "Enter organization name: ",
-                        "Enter report name: ", "Enter report annotation: "}) {
+      for (auto &msg :
+           {"Enter Administration name: ", "Enter organization name: ",
+            "Enter report name: ", "Enter report annotation: "}) {
         std::cout << msg;
         std::getline(std::cin, input[i]);
         i++;
       }
-      keeper.push(new my::Speaker(input[0], input[1], input[2], input[3]));
+      keeper.push(new my::Speaker(input));
 
-      std::cout << "\nWan't complete?"
-                << "\n1 - yes"
-                << "\n0 - no" << std::endl
-                << "Your choice: ";
-      std::cin >> choice;
-      if (!choice)
-        running = false;
+    } break;
+    case 2: {
+      std::string input[3];
+      int i = 0;
+      for (auto &msg : {"Enter speaker name: ", "Enter Post: ",
+                        "Enter Area of responsibility: "}) {
+        std::cout << msg;
+        std::getline(std::cin, input[i]);
+        i++;
+      }
+      keeper.push(new my::Administration(input));
+
+    } break;
+    case 3: {
+      std::string input[3];
+      int i = 0;
+      for (auto &msg : {"Enter conference name: ", "Enter conference date: ",
+                        "Enter conferentce time: "}) {
+        std::cout << msg;
+        std::getline(std::cin, input[i]);
+        i++;
+      }
+      keeper.push(new my::Conference(input));
     } break;
     case 0:
       running = false;
@@ -47,6 +70,13 @@ void addingNew(my::Keeper &keeper) {
     default:
       std::cout << "Incorrect Input, please, try again." << std::endl;
     }
+    std::cout << "\nContinue?"
+              << "\n1 - yes"
+              << "\n0 - no" << std::endl
+              << "Your choice: ";
+    std::cin >> choice;
+    if (choice == 0)
+      running = false;
   }
 }
 
@@ -68,7 +98,11 @@ int main() {
       k.print();
       break;
     case 4:
+      k.save();
+      break;
     case 5:
+      k.load();
+      break;
     case 9:
       printInstruction();
       break;

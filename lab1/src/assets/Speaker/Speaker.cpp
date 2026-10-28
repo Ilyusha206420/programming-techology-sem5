@@ -1,20 +1,12 @@
 #include "Speaker.h"
 
 #include <iostream>
-
-void my::Speaker::printData(const char *pref) const {
-  std::cout << '\n'
-            << pref << "\nName: " << this->getNmae()
-            << "\nOrganization: " << _organization_name
-            << "\nReport: " << _report_name << "\nAnnotation"
-            << _report_annotation << std::endl;
-}
-// namespace SpeakerInternal
+#include <string>
 
 my::Speaker::Speaker()
     : my::Base(), _organization_name(std::string()),
       _report_name(std::string()), _report_annotation(std::string()) {
-  std::cout << "\nCreate empty speaker" << std::endl;
+  std::cout << "\nCreated empty speaker" << std::endl;
 }
 
 my::Speaker::Speaker(const char *name, const char *organization,
@@ -22,7 +14,7 @@ my::Speaker::Speaker(const char *name, const char *organization,
     : my::Base(name), _organization_name(std::string(organization)),
       _report_name(std::string(report)),
       _report_annotation(std::string(annotation)) {
-  this->printData("Create speacker:");
+  std::cout << "\nCreated speaker:" << this->represent() << std::endl;
 }
 
 my::Speaker::Speaker(const std::string &name, const std::string &organization,
@@ -30,7 +22,13 @@ my::Speaker::Speaker(const std::string &name, const std::string &organization,
     : my::Base(name), _organization_name(std::string(organization)),
       _report_name(std::string(report)),
       _report_annotation(std::string(annotation)) {
-  this->printData("Create speacker:");
+  std::cout << "\nCreated speaker:" << this->represent() << std::endl;
+}
+
+my::Speaker::Speaker(const std::string arg_arr[4])
+    : my::Base(arg_arr[0]), _organization_name(arg_arr[1]),
+      _report_name(arg_arr[2]), _report_annotation(arg_arr[3]) {
+  std::cout << "\nCreated speaker:" << this->represent() << std::endl;
 }
 
 my::Speaker::Speaker(const Speaker &other)
@@ -38,33 +36,44 @@ my::Speaker::Speaker(const Speaker &other)
       _organization_name(std::string(other._organization_name)),
       _report_name(std::string(other._report_name)),
       _report_annotation(std::string(other._report_annotation)) {
-  this->printData("Create speaker:");
+  std::cout << "\nCreated speaker:" << this->represent() << std::endl;
 }
 
-my::Speaker::~Speaker() { this->printData("Removing speacker:"); }
-
-const char *my::Speaker::getOrganizationName() const {
-  return _report_name.c_str();
-}
-const char *my::Speaker::getReportName() const { return _report_name.c_str(); }
-
-const char *my::Speaker::getReportAnnotetion() const {
-  return _report_annotation.c_str();
+my::Speaker::~Speaker() {
+  std::cout << "\nDisstructor called for:" << this->represent() << std::endl;
 }
 
-int my::Speaker::setOrganizationName(const char *newName) {
-  _organization_name = newName;
-  return 0;
+std::string my::Speaker::getOrganizationName() const {
+  return std::string(_organization_name);
+}
+std::string my::Speaker::getReportName() const {
+  return std::string(_report_name);
 }
 
-int my::Speaker::setReportName(const char *newName) {
-  _report_name = newName;
-  return 0;
+std::string my::Speaker::getReportAnnotetion() const {
+  return std::string(_report_annotation);
 }
 
-int my::Speaker::setReportAnnotetion(const char *newAnnotation) {
-  _report_annotation = newAnnotation;
-  return 0;
+void my::Speaker::setOrganizationName(std::string &newName) {
+  _organization_name = std::string(newName);
 }
 
-void my::Speaker::print() const { this->printData("Speacker:"); }
+void my::Speaker::setReportName(std::string &newName) {
+  _report_name = std::string(newName);
+}
+
+void my::Speaker::setReportAnnotetion(std::string &newAnnotation) {
+  _report_annotation = std::string(newAnnotation);
+}
+
+std::string my::Speaker::represent() const {
+  std::string res = "\n[Speaker]\nName: ";
+  res += this->getNmae();
+  res += "\nOrganization name: ";
+  res += _organization_name;
+  res += "\nReport name: ";
+  res += _report_name;
+  res += "\nReport annotation: ";
+  res += _report_annotation;
+  return res;
+}

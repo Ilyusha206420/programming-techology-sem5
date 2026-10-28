@@ -6,9 +6,6 @@ my::Base::Base(const std::string &name) : _name(name) {}
 
 my::Base::~Base() {}
 
-const char *my::Base::getNmae() const { return _name.c_str(); }
+std::string my::Base::getNmae() const { return std::string(_name); }
 
-int my::Base::setName(const char *newName) {
-  _name = newName;
-  return 0;
-}
+void my::Base::setName(std::string &newName) { _name = std::string(newName); }
